@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Sku:
+  = @item.sku
+p
+  strong Name:
+  = @item.name
+p
+  strong Description:
+  = @item.description
+p
+  strong Price:
+  = @item.price
+p
+  strong Making cost:
+  = @item.making_cost
+p
+  strong Stock count:
+  = @item.stock_count
+p
+  strong Sold count:
+  = @item.sold_count
+p
+  strong Available:
+  = @item.available
+p
+  strong Item category:
+  = @item.item_category
+
+= link_to 'Edit', edit_item_path(@item)
+'|
+= link_to 'Back', items_path

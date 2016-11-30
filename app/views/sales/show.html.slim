@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Billed amount:
+  = @sale.billed_amount
+p
+  strong Discount:
+  = @sale.discount
+p
+  strong Paid amount:
+  = @sale.paid_amount
+p
+  strong Tax:
+  = @sale.tax
+p
+  strong Customer:
+  = @sale.customer
+
+= link_to 'Edit', edit_sale_path(@sale)
+'|
+= link_to 'Back', sales_path

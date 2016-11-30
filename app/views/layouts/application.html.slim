@@ -1,13 +1,35 @@
 doctype html
-  html
+html
+  head
+    title CrossoverPOS
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
 
-    head
-      title CrossoverPOS
-      = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
-      = csrf_meta_tags
+  body
 
-    body
-      .notice = notice
-      .alert = alert
-      = yield
+    .navbar.navbar-inverse.navbar-fixed-top role='navigation'
+
+      .container
+
+        .navbar-header
+
+          a.navbar-brand href="#"  CrossoverPOS
+
+        ul.nav.navbar-nav
+
+        ul.nav.navbar-nav.navbar-right
+
+          - if user_signed_in?
+            li = link_to current_user.email, edit_user_registration_path
+            li = link_to 'Log Out', destroy_user_session_path, method: :delete
+
+          - else
+            li = link_to 'Sign In', user_session_path
+
+    .container
+      - flash.each do |type, message|
+        .alert.alert-dismissable class=(flash_class type)
+          button.close aria-hidden='true' data-dismiss='alert' type='button'
+          p = message
+      == yield
