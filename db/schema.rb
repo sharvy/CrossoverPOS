@@ -88,11 +88,13 @@ ActiveRecord::Schema.define(version: 20161130152215) do
     t.decimal  "paid_amount",                            precision: 10
     t.decimal  "tax",                                    precision: 10
     t.integer  "customer_id",                  limit: 4
+    t.integer  "user_id",                      limit: 4
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
   end
 
   add_index "sales", ["customer_id"], name: "index_sales_on_customer_id", using: :btree
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "store_details", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -134,4 +136,5 @@ ActiveRecord::Schema.define(version: 20161130152215) do
   add_foreign_key "line_items", "sales"
   add_foreign_key "payments", "sales"
   add_foreign_key "sales", "customers"
+  add_foreign_key "sales", "users"
 end

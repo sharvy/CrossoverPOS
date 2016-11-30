@@ -7,6 +7,7 @@ class CreateSales < ActiveRecord::Migration
       t.decimal :paid_amount
       t.decimal :tax
       t.references :customer, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end
