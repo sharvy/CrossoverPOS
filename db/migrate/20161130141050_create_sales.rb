@@ -6,6 +6,7 @@ class CreateSales < ActiveRecord::Migration
       t.decimal :billed_amount_after_discount
       t.decimal :paid_amount
       t.decimal :tax
+      t.text    :note
       t.references :customer, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
 

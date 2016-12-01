@@ -15,6 +15,7 @@ gem 'nested_form', '~> 0.3.2'
 gem 'public_activity', '1.5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'slim-rails'
+gem 'react-rails'
 
 group :development, :test do
   gem 'byebug'

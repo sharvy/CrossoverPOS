@@ -5,4 +5,7 @@
 //= require icheck.min
 //= require jquery.fs.selecter.min
 //= require jquery.fs.stepper.min
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .

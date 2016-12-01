@@ -25,12 +25,9 @@
     = f.label :stock_count
     = f.number_field :stock_count
   .field
-    = f.label :sold_count
-    = f.number_field :sold_count
-  .field
     = f.label :active
     = f.check_box :active
   .field
     = f.label :item_category
-    = f.text_field :item_category
+    = f.select :item_category, @categories, include_blank: false
   .actions = f.submit
