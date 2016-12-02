@@ -7,5 +7,6 @@
 //= require jquery.fs.stepper.min
 //= require react
 //= require react_ujs
+//= require calculate_payment
 //= require components
 //= require_tree .

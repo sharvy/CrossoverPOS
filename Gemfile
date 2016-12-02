@@ -16,6 +16,8 @@ gem 'public_activity', '1.5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'slim-rails'
 gem 'react-rails'
+gem 'sprockets', '>=3.0.0.beta'
+gem 'sprockets-es6'
 
 group :development, :test do
   gem 'byebug'
