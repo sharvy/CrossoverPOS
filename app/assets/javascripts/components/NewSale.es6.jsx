@@ -54,8 +54,8 @@ class NewSale extends React.Component {
         <tr key={item.id}>
           <td>{item.name}</td>
           <td className="currency"><span className="badge badge-primary">{item.quantity}</span></td>
-          <td className="currency">${item.price}</td>
-          <td className="currency">${item.totalPrice}</td>
+          <td className="currency">{formatCurrency(item.price)}</td>
+          <td className="currency">{formatCurrency(item.totalPrice)}</td>
         </tr>
       );
     });
@@ -89,6 +89,8 @@ class NewSale extends React.Component {
             total={total}
             handleDiscountChange={this.discountChanged.bind(this)}
           />
+          <button className="btn btn-primary pull-right checkout" data-toggle="modal" data-target="#checkout">Checkout</button>
+          <Checkout total={total}/>
         </div>
         <div className="col-md-6 selected-items">
           <div className="panel panel-primary">

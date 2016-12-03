@@ -12,11 +12,8 @@ class Payment extends React.Component {
     return options;
   }
 
-  changeDiscount(e) {
-    e.preventDefault();
+  changeDiscount() {
     var discountPercentage = parseInt(this.refs.discountPercentage.value);
-    console.log(discountPercentage);
-
     if(discountPercentage > 0) {
       this.props.handleDiscountChange(discountPercentage);
     }
@@ -33,7 +30,7 @@ class Payment extends React.Component {
         <div className="panel-body">
           <div className="row">
             <div className="col-md-6"><h3>Subtotal</h3></div>
-            <div className="col-md-6 currency"><h3>${subTotal}</h3></div>
+            <div className="col-md-6 currency"><h3>{formatCurrency(subTotal)}</h3></div>
           </div>
           <div className="row">
             <div className="col-md-6">
@@ -46,16 +43,16 @@ class Payment extends React.Component {
                 </div>
               </h3>
             </div>
-            <div className="col-md-6 currency"><h3>${discount}</h3></div>
+            <div className="col-md-6 currency"><h3>{formatCurrency(discount)}</h3></div>
           </div>
           <div className="row">
             <div className="col-md-6"><h3>Tax({taxPercentage}%)</h3>
             </div>
-            <div className="col-md-6 currency"><h3>${tax}</h3></div>
+            <div className="col-md-6 currency"><h3>{formatCurrency(tax)}</h3></div>
           </div>
           <div className="row">
             <div className="col-md-6"><h2>Total</h2></div>
-            <div className="col-md-6 currency"><h2>${total}</h2></div>
+            <div className="col-md-6 currency"><h2>{formatCurrency(total)}</h2></div>
           </div>
         </div>
       </div>

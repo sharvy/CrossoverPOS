@@ -1,9 +1,14 @@
 body {
   padding-top: 50px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .currency {
   text-align: right;
+}
+
+.badge {
+  font-size: 14px;
 }
 
 .selected-items, .payment-details {
@@ -38,4 +43,20 @@ body {
       height: 60px;
     }
   }
+}
+
+.checkout-modal {
+  .form-group {
+    margin-right: 5px;
+    .form-control {
+      font-size: 22px;
+      padding: 10px 60px;
+      height: 60px;
+    }
+  }
+}
+
+.checkout {
+  padding: 20px 60px;
+  font-size: 22px;
 }
