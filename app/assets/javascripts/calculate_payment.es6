@@ -5,21 +5,21 @@ class CalculatePayment {
     this.taxPercentage = params.taxPercentage;
   }
 
-  subTotal() {
+  amount() {
     return this.items.reduce(function(a, b) {
       return { totalPrice: a.totalPrice + b.totalPrice };
     }, { totalPrice: 0 }).totalPrice;
   }
 
   discountAmount() {
-    return (this.subTotal() * this.discountPercentage) / 100;
+    return (this.amount() * this.discountPercentage) / 100;
   }
 
   tax() {
-    return (this.subTotal() - this.discountAmount()) * this.taxPercentage / 100;
+    return (this.amount() - this.discountAmount()) * this.taxPercentage / 100;
   }
 
-  total() {
-    return this.subTotal() - this.discountAmount() + this.tax();
+  totalAmount() {
+    return this.amount() - this.discountAmount() + this.tax();
   }
 }

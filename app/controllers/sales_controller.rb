@@ -20,15 +20,12 @@ class SalesController < ApplicationController
 
   def create
     @sale = Sale.new(sale_params)
+    if @sale.save
+      associate_cart_items_with_sale
 
-    respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-        format.json { render :show, status: :created, location: @sale }
-      else
-        format.html { render :new }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
+      render json: @sale, status: :created
+    else
+      render json: @sale.errors, status: :unprocessable_entity
     end
   end
 
@@ -53,11 +50,20 @@ class SalesController < ApplicationController
   end
 
   private
-    def set_sale
-      @sale = Sale.find(params[:id])
-    end
 
-    def sale_params
-      params.require(:sale).permit(:billed_amount, :discount, :paid_amount, :tax, :customer_id)
-    end
+  def set_sale
+    @sale = Sale.find(params[:id])
+  end
+
+  def sale_params
+    params.require(:sale).permit(:amount, :discount, :tax, :total_amount, :customer_id)
+  end
+
+  def cart_items
+    params['items']
+  end
+
+  def associate_cart_items_with_sale
+    LineItemsAssigner.new(cart_items, @sale).assign
+  end
 end

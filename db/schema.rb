@@ -82,16 +82,15 @@ ActiveRecord::Schema.define(version: 20161130152215) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.decimal  "billed_amount",                              precision: 10
-    t.decimal  "discount",                                   precision: 10
-    t.decimal  "billed_amount_after_discount",               precision: 10
-    t.decimal  "paid_amount",                                precision: 10
-    t.decimal  "tax",                                        precision: 10
-    t.text     "note",                         limit: 65535
-    t.integer  "customer_id",                  limit: 4
-    t.integer  "user_id",                      limit: 4
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.decimal  "amount",                     precision: 10
+    t.decimal  "discount",                   precision: 10
+    t.decimal  "tax",                        precision: 10
+    t.decimal  "total_amount",               precision: 10
+    t.text     "note",         limit: 65535
+    t.integer  "customer_id",  limit: 4
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "sales", ["customer_id"], name: "index_sales_on_customer_id", using: :btree

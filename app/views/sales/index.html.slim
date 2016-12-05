@@ -3,11 +3,10 @@ h1 Listing sales
 table
   thead
     tr
-      th Billed amount
+      th Amount
       th Discount
-      th Paid amount
       th Tax
-      th Customer
+      th Total amount
       th
       th
       th
@@ -15,11 +14,10 @@ table
   tbody
     - @sales.each do |sale|
       tr
-        td = sale.billed_amount
+        td = sale.amount
         td = sale.discount
-        td = sale.paid_amount
         td = sale.tax
-        td = sale.customer
+        td = sale.total_amount
         td = link_to 'Show', sale
         td = link_to 'Edit', edit_sale_path(sale)
         td = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete

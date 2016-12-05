@@ -3,13 +3,20 @@ class NewSale extends React.Component {
     super(props);
     this.state = {
       cartItems: [],
-      subTotal: 0.00,
+      amount: 0.00,
       discountPercentage: 0,
       taxPercentage: props.taxPercentage,
       discount: 0.00,
       tax: 0.00,
-      total: 0.00
+      totalAmount: 0.00,
+      timestamp: Date.now()
     };
+    this.initialState = this.state;
+
+    this.discountChanged = this.discountChanged.bind(this);
+    this.addNew = this.addNew.bind(this);
+    this.discountChanged = this.discountChanged.bind(this);
+    this.createNewSale = this.createNewSale.bind(this);
   }
 
   addNew(id, quantity) {
@@ -41,10 +48,10 @@ class NewSale extends React.Component {
     });
 
     this.setState({
-      subTotal: calculatePayment.subTotal(),
+      amount: calculatePayment.amount(),
       discount: calculatePayment.discountAmount(),
       tax: calculatePayment.tax(),
-      total: calculatePayment.total()
+      totalAmount: calculatePayment.totalAmount()
     });
   }
 
@@ -70,27 +77,60 @@ class NewSale extends React.Component {
     this.updatePaymentDetails();
   }
 
+  createNewSale({paymentMethod, paidAmount}) {
+    var _this = this;
+    var {amount, discount, tax, totalAmount} = _this.state;
+
+    _this.setState({
+      paymentMethod: paymentMethod,
+      paidAmount: paidAmount
+    });
+
+    var sale = {
+      amount: amount,
+      discount: discount,
+      tax: tax,
+      total_amount: totalAmount
+    };
+
+    $.ajax({
+      method: 'POST',
+      url: '/sales',
+      data: {
+        items: _this.state.cartItems,
+        sale: sale
+      }
+    }).done(function(msg) {
+      console.log(msg);
+      _this.resetState();
+    });
+  }
+
+  resetState() {
+    this.setState(this.initialState);
+  }
+
   render() {
-    var {subTotal, discount, discountPercentage, tax, taxPercentage, total} = this.state;
+    var {amount, discount, discountPercentage, tax, taxPercentage, totalAmount} = this.state;
 
     return(
-      <div className="row">
+      <div className="row" key={this.state.timestamp}>
         <div className="col-md-12">
-          <h4>New Sale</h4>
-          <AddToCartForm addNewItemToCart={this.addNew.bind(this)} allItems={this.props.allItems}/>
+          <h4>New Sale {this.state.timestamp}</h4>
+          <AddToCartForm addNewItemToCart={this.addNew} allItems={this.props.allItems}/>
         </div>
         <div className="col-md-6 new-sale">
           <Payment
-            subTotal={subTotal}
+            amount={amount}
             discount={discount}
             discountPercentage={discountPercentage}
             tax={tax}
             taxPercentage={taxPercentage}
-            total={total}
-            handleDiscountChange={this.discountChanged.bind(this)}
+            totalAmount={totalAmount}
+            handleDiscountChange={this.discountChanged}
           />
           <button className="btn btn-primary pull-right checkout" data-toggle="modal" data-target="#checkout">Checkout</button>
-          <Checkout total={total}/>
+          <Checkout totalAmount={totalAmount} handlePayment={this.createNewSale}/>
         </div>
         <div className="col-md-6 selected-items">
           <div className="panel panel-primary">

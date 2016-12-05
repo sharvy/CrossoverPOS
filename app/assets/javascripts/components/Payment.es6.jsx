@@ -20,7 +20,7 @@ class Payment extends React.Component {
   }
 
   render() {
-    var {subTotal, discount, tax, taxPercentage, total} = this.props;
+    var {amount, discount, tax, taxPercentage, totalAmount} = this.props;
 
     return (
       <div className="panel panel-primary payment-details">
@@ -30,7 +30,7 @@ class Payment extends React.Component {
         <div className="panel-body">
           <div className="row">
             <div className="col-md-6"><h3>Subtotal</h3></div>
-            <div className="col-md-6 currency"><h3>{formatCurrency(subTotal)}</h3></div>
+            <div className="col-md-6 currency"><h3>{formatCurrency(amount)}</h3></div>
           </div>
           <div className="row">
             <div className="col-md-6">
@@ -52,7 +52,7 @@ class Payment extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-6"><h2>Total</h2></div>
-            <div className="col-md-6 currency"><h2>{formatCurrency(total)}</h2></div>
+            <div className="col-md-6 currency"><h2>{formatCurrency(totalAmount)}</h2></div>
           </div>
         </div>
       </div>

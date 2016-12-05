@@ -4,7 +4,11 @@ class Checkout extends React.Component {
     this.state = {
       changeAmount: 0.00
     };
+    this.initialState = this.state;
+
+    this.handlePayment          = this.handlePayment.bind(this);
     this.handlePaidAmountChange = this.handlePaidAmountChange.bind(this);
+
   }
 
   paymentMethods() {
@@ -18,17 +22,34 @@ class Checkout extends React.Component {
 
   handlePaidAmountChange() {
     var paidAmount = this.refs.paidAmount.value;
-    var total = this.props.total;
-    var changeAmount = paidAmount - total;
+    var totalAmount = this.props.totalAmount;
+    var changeAmount = paidAmount - totalAmount;
 
     this.setState({
       changeAmount: changeAmount
     });
   }
 
+  handlePayment() {
+    var paymentMethod = this.refs.paymentMethod.value;
+    var paidAmount    = this.refs.paidAmount.value;
+
+    this.props.handlePayment({
+      paymentMethod: paymentMethod,
+      paidAmount: paidAmount
+    });
+
+    this.resetState();
+  }
+
+  resetState() {
+    this.refs.paidAmount.value = '';
+    this.setState(this.initialState);
+  }
+
   render() {
     return (
-      <div className="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="checkout">
+      <div className="modal fade" id="checkout" role="dialog" aria-labelledby="checkout">
         <div className="modal-dialog modal-md" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -43,10 +64,21 @@ class Checkout extends React.Component {
                   <option value="" disabled>Select payment method</option>
                   {this.paymentMethods()}
                 </select>
+
                 <br/>
-                <input type="text" readonly value={this.props.total} className="form-control"/>
+
+                <div className="input-group">
+                  <span className="input-group-addon">$</span>
+                  <input type="text" readOnly value={this.props.totalAmount.toFixed(2)} className="form-control"/>
+                </div>
+
                 <br/>
-                <input type="text" ref="paidAmount" onChange={this.handlePaidAmountChange} className="form-control" placeholder="Paid Amount"/>
+
+                <div className="input-group">
+                  <span className="input-group-addon">$</span>
+                  <input type="text" ref="paidAmount" defaultValue="" onChange={this.handlePaidAmountChange} className="form-control" placeholder="Paid Amount"/>
+                </div>
+
                 <br/>
                 <hr/>
                 <div className="col-md-6"><h3>Change</h3></div>
@@ -56,7 +88,7 @@ class Checkout extends React.Component {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-success">Pay</button>
+              <button type="button"  className="btn btn-success" data-dismiss="modal" onClick={this.handlePayment}>Pay</button>
             </div>
           </div>
         </div>
