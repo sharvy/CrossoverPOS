@@ -2,7 +2,7 @@ class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sales = Sale.all
+    @sales = Sale.all || []
   end
 
   def show
