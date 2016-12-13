@@ -6,11 +6,9 @@ class SalesController < ApplicationController
   end
 
   def show
-
   end
 
   def new
-    @sale = Sale.new
     @items = Item.all
     @tax_percentage = StoreDetail.last.try(:tax_rate) || StoreDetail::DEFAULT_TAX_PERCENTAGE
   end
@@ -43,10 +41,7 @@ class SalesController < ApplicationController
 
   def destroy
     @sale.destroy
-    respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
