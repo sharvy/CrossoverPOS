@@ -1,27 +1,33 @@
-h1 Listing sales
+h1 Sales
 
-table
-  thead
-    tr
-      th Amount
-      th Discount
-      th Tax
-      th Total amount
-      th
-      th
-      th
+.panel.panel-default
+  .panel-heading Sale Amounts
+  .panel-body = column_chart Sale.group_by_day_of_month(:created_at).sum(:total_amount)
 
-  tbody
-    - @sales.each do |sale|
-      tr
-        td = sale.amount
-        td = sale.discount
-        td = sale.tax
-        td = sale.total_amount
-        td = link_to 'Show', sale
-        td = link_to 'Edit', edit_sale_path(sale)
-        td = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
+.panel.panel-default
+  .panel-heading All Sale Records (#{@sales.count})
+  .panel-body
+    table.table
+      thead
+        tr
+          th Sale Id
+          th.currency Amount
+          th.currency Discount
+          th.currency Tax
+          th.currency Total Amount
+          th Actions
 
-br
-
-= link_to 'New Sale', new_sale_path
+        tbody
+          - @sales.each do |sale|
+            tr
+              td = sale.id
+              td.currency = sale.amount
+              td.currency = sale.discount
+              td.currency = sale.tax
+              td.currency = sale.total_amount
+              td
+                = link_to 'Show', sale
+                '
+                = link_to 'Edit', edit_sale_path(sale)
+                '
+                = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete

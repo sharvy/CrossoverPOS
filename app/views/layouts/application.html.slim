@@ -13,10 +13,21 @@ html
       .container
 
         .navbar-header
-
-          a.navbar-brand href="#"  CrossoverPOS
+          = link_to 'EasyPOS', root_path, class: 'navbar-brand'
 
         ul.nav.navbar-nav
+          li.new-sale
+            = link_to new_sale_path, class: 'active' do
+              span.glyphicon.glyphicon-plus
+              ' New Sale
+
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              ' Add New
+              span.caret
+            ul.dropdown-menu
+              li = link_to 'Item', items_path
+              li = link_to 'Item Category', item_categories_path
 
         ul.nav.navbar-nav.navbar-right
 

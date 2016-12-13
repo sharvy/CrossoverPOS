@@ -10,4 +10,6 @@
 //= require utils
 //= require calculate_payment
 //= require components
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .

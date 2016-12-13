@@ -60,3 +60,62 @@ body {
   padding: 20px 60px;
   font-size: 22px;
 }
+
+.all-items, .all-item-categories {
+  margin-top: 20px;
+}
+
+.item-thumbnail {
+  background-color: #FFCE54;
+  border-radius: 0;
+
+  &:hover {
+    background-color: #F6BB42;
+  }
+
+  .item-name, .item-price {
+    display: block;
+    color: #000;
+  }
+
+  .item-name {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: lighter;
+  }
+  .item-price {
+    font-size: 26px;
+  }
+}
+
+.item-category-thumbnail {
+  background-color: #E9573F;
+  border-radius: 0;
+
+  .item-category-name, .item-category-description {
+    display: block;
+  }
+
+  .item-category-name {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    height: 20px;
+    overflow-y: auto;
+  }
+}
+
+.navbar-inverse {
+  .navbar-nav {
+    li.new-sale {
+      a {
+        color: #000;
+      }
+      background: #FFCE54;
+      &:hover {
+        background: #F6BB42;
+      }
+    }
+  }
+}
+

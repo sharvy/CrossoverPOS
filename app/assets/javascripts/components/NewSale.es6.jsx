@@ -116,7 +116,7 @@ class NewSale extends React.Component {
     return(
       <div className="row" key={this.state.timestamp}>
         <div className="col-md-12">
-          <h4>New Sale {this.state.timestamp}</h4>
+          <h4>New Sale</h4>
           <AddToCartForm addNewItemToCart={this.addNew} allItems={this.props.allItems}/>
         </div>
         <div className="col-md-6 new-sale">

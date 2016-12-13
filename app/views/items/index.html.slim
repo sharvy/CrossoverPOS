@@ -1,6 +1,3 @@
-div.row
-  = link_to '+ Add New Item', new_item_path
-br
-
-div.row
-  = react_component 'Items', { items: @items }
+div.all-items
+  div.row
+    = react_component 'Items', { items: @items, itemCategories: @item_categories, itemsPath: items_path }

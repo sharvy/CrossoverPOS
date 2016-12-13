@@ -1,20 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:update, :destroy]
 
   def index
     @items = Item.all
-  end
-
-  def show
-    render json: @item
-  end
-
-  def new
-    @item = Item.new
-    @categories = ItemCategory.all.collect { |c| [c.name, c.id] }
-  end
-
-  def edit
+    @item_categories = ItemCategory.all
   end
 
   def create

@@ -82,7 +82,7 @@ class Checkout extends React.Component {
                 <br/>
                 <hr/>
                 <div className="col-md-6"><h3>Change</h3></div>
-                <div className="col-md-6"><h3>{this.state.changeAmount}</h3></div>
+                <div className="col-md-6"><h3>{formatCurrency(this.state.changeAmount)}</h3></div>
                 <br/>
               </div>
             </div>
