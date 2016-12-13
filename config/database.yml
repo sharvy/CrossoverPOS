@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: CrossoverPOS_development
+  database: EasyPOS_development
 
 test:
   <<: *default
-  database: CrossoverPOS_test
+  database: EasyPOS_test
 
 production:
   <<: *default
-  database: CrossoverPOS_production
-  username: CrossoverPOS
+  database: EasyPOS_production
+  username: EasyPOS
   password: <%= ENV['CROSSOVERPOS_DATABASE_PASSWORD'] %>
