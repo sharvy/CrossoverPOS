@@ -1,10 +1,6 @@
 h1 Sales
 
 .panel.panel-default
-  .panel-heading Sale Amounts
-  .panel-body = column_chart Sale.group_by_day_of_month(:created_at).sum(:total_amount)
-
-.panel.panel-default
   .panel-heading All Sale Records (#{@sales.count})
   .panel-body
     table.table
