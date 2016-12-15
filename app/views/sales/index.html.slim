@@ -15,7 +15,7 @@ h1 Sales
           th.currency Discount
           th.currency Tax
           th.currency Total Amount
-          th Actions
+          /th Actions
 
         tbody
           - @sales.each do |sale|
@@ -25,9 +25,9 @@ h1 Sales
               td.currency = sale.discount
               td.currency = sale.tax
               td.currency = sale.total_amount
-              td
-                = link_to 'Show', sale
-                '
-                = link_to 'Edit', edit_sale_path(sale)
-                '
-                = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
+              /td
+              /  = link_to 'Show', sale
+              /  '
+              /  = link_to 'Edit', edit_sale_path(sale)
+              /  '
+              /  = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
