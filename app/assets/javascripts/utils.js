@@ -1,3 +1,3 @@
 var formatCurrency = function(amount) {
-  return '$' + amount.toFixed(2);
+  return '$' + parseFloat(amount).toFixed(2);
 };
